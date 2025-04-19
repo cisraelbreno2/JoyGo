@@ -14,10 +14,11 @@ The goal of this project is to create a bridge between a joystick and a keyboard
 Currently, the project **only works on macOS**.  
 You must have the **SDL2 library installed** on your system.
 
-To install it using Homebrew:
+To install it using Homebrew (MacOs):
 
 ```bash
 brew install sdl2
+```
 
 ### How to run the project
 
