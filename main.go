@@ -1,7 +1,7 @@
 package main
 
 import (
-	"controllerTranslate/internal/joystick"
+	"JoyGo/internal/joystick"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
