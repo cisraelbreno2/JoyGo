@@ -7,6 +7,7 @@ toolchain go1.23.3
 require (
 	github.com/go-vgo/robotgo v0.110.7
 	github.com/veandco/go-sdl2 v0.4.40
+
 )
 
 require (
@@ -16,6 +17,7 @@ require (
 	github.com/go-ole/go-ole v1.3.0 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
 	github.com/jezek/xgb v1.1.1 // indirect
+	github.com/jupiterrider/purego-sdl3 v0.0.0-20250419153955-23dd238df2cc // indirect
 	github.com/kbinani/screenshot v0.0.0-20250118074034-a3924b7bbc8c // indirect
 	github.com/lufia/plan9stats v0.0.0-20250317134145-8bc96cf8fc35 // indirect
 	github.com/lxn/win v0.0.0-20210218163916-a377121e959e // indirect

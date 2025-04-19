@@ -1,4 +1,4 @@
-// mouse_move_windows.c
+//go:build windows
 #include <windows.h>
 #include <math.h>
 

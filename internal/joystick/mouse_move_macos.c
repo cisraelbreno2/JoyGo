@@ -1,4 +1,4 @@
-// mouse_move_macos.c
+//go:build darwin
 #include <ApplicationServices/ApplicationServices.h>
 #include <math.h>
 

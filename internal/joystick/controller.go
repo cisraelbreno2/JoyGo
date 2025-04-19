@@ -38,6 +38,7 @@ func NewJoystickController() *JoystickController {
 }
 
 func (j JoystickController) initSDL() {
+
 	if err := sdl.Init(sdl.INIT_GAMECONTROLLER); err != nil {
 		log.Fatalf("Erro ao inicializar SDL: %v", err)
 	}

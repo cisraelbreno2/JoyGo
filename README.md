@@ -1,3 +1,4 @@
+
 # JoyGo
 Initial project of a bridge between a joystick with a keyboard and mouse
 
@@ -5,27 +6,20 @@ Initial project of a bridge between a joystick with a keyboard and mouse
 The goal of this project is to create a bridge between a joystick and a keyboard and mouse. The idea is to allow the user to use the joystick as a keyboard and mouse, to control the computer in order to be able to place it in an environment such as a living room without having to keep the keyboard and mouse with them.
 
 ## Functionality
-- The joystick will be able to control the mouse and keyboard.
-- When entering a game, simply press the right analog stick and select to disable input via keyboard and mouse
-- So far the joystick has only been tested on the MacOs
+- The joystick can control the mouse and keyboard.
+- When entering a game, simply press the right analog stick and "select" to disable keyboard and mouse input.
+- So far, the joystick has only been tested on **macOS**.
 
-## Project Structure
+## ⚠️ Compatibility Notice
+Currently, the project **only works on macOS**.  
+You must have the **SDL2 library installed** on your system.
+
+To install it using Homebrew:
+
 ```bash
-.
-├── README.md
-├── main.go
-├── config
-    ├── mapButtons.json
-└── internal
-    └──joystick
-        ├── actions.go
-        ├── buttons.go
-        ├── connect.go
-        ├── controller.go
-        └── moviment.go
-```
+brew install sdl2
 
-## How to run the project
+### How to run the project
 
 Clone the repository
 
