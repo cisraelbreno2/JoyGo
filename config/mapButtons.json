@@ -1,0 +1,18 @@
+[
+  { "name": "A", "value": 0, "keyDown": "left", "keyUp": null, "mouseFunction": true},
+  { "name": "X", "value": 2, "keyDown": null, "keyUp": "right" , "mouseFunction": true},
+  { "name": "B", "value": 1, "keyDown": "backspace", "keyUp": "backspace" , "mouseFunction": false},
+  { "name": "Y", "value": 3, "keyDown": "audio_pause", "keyUp": "audio_pause" , "mouseFunction": false},
+  { "name": "BACK", "value": 4, "keyDown": "escape", "keyUp": "escape" , "mouseFunction": false},
+  { "name": "START", "value": 6, "keyDown": "enter", "keyUp": "enter" , "mouseFunction": false},
+  { "name": "L", "value": 7, "keyDown": null, "keyUp": null , "mouseFunction": false},
+  { "name": "R", "value": 8, "keyDown": "escape", "keyUp": "escape" , "mouseFunction": false},
+  { "name": "LB", "value": 9, "keyDown": "audio_prev", "keyUp": "audio_prev" , "mouseFunction": false},
+  { "name": "RB", "value": 10, "keyDown": "audio_next", "keyUp": "audio_next" , "mouseFunction": false},
+  { "name": "LT", "value": 9, "keyDown": "audio_prev", "keyUp": "audio_prev" , "mouseFunction": false},
+  { "name": "RT", "value": 10, "keyDown": "audio_next", "keyUp": "audio_next" , "mouseFunction": false},
+  { "name": "UP", "value": 11, "keyDown": "up", "keyUp": "up" , "mouseFunction": false},
+  { "name": "DOWN", "value": 12, "keyDown": "down", "keyUp": "down" , "mouseFunction": false},
+  { "name": "LEFT", "value": 13, "keyDown": "left", "keyUp": "left" , "mouseFunction": false},
+  { "name": "RIGHT", "value": 14, "keyDown": "right", "keyUp": "right", "mouseFunction": false }
+]

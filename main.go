@@ -1,0 +1,16 @@
+package main
+
+import (
+	"controllerTranslate/internal/joystick"
+	"github.com/veandco/go-sdl2/sdl"
+)
+
+func main() {
+	controller := joystick.NewJoystickController()
+	defer sdl.Quit()
+
+	for {
+		joystick.HandleConnect(controller)
+		joystick.HandleDisconnect(controller)
+	}
+}
