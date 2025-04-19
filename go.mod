@@ -1,4 +1,4 @@
-module controllerTranslate
+module JoyGo
 
 go 1.23.0
 
