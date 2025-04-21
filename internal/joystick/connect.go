@@ -60,6 +60,8 @@ func HandleDisconnect() {
 				switch e.State {
 				case sdl.PRESSED:
 					disableOrEnableInterpreter(e.Button, true)
+				case sdl.RELEASED:
+					disableOrEnableInterpreter(e.Button, false)
 				}
 			}
 		}

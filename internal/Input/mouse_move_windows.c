@@ -55,3 +55,12 @@ static void move_mouse_analog(int x, int y) {
     GetCursorPos(&p);
     SetCursorPos(p.x + (int)newSpeedX, p.y + (int)newSpeedY);
 }
+
+static void scrollMouse(int x, int y) {
+    if (y != 0) {
+        mouse_event(MOUSEEVENTF_WHEEL, 0, 0, y * 120, 0); // 120 por "notch"
+    }
+    if (x != 0) {
+        mouse_event(MOUSEEVENTF_HWHEEL, 0, 0, x * 120, 0);
+    }
+}
