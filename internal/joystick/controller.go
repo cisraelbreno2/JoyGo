@@ -1,46 +1,57 @@
 package joystick
 
 import (
+	input "JoyGo/internal/Input"
 	"encoding/json"
 	"fmt"
 	"github.com/veandco/go-sdl2/sdl"
-	"log"
 	"os"
 	"path/filepath"
 )
 
 type JoystickController struct {
-	Buttons []Button
+	Buttons  []Button
+	Executor input.Executor
+}
+
+type Button struct {
+	Name          string `json:"name"`
+	Value         uint8  `json:"value"`
+	KeyDown       string `json:"keyDown"`
+	KeyUp         string `json:"keyUp"`
+	MouseFunction bool   `json:"mouseFunction"`
 }
 
 func NewJoystickController() *JoystickController {
-	exePath, err := os.Executable()
-	if err != nil {
-		panic(err)
-	}
+	exePath, _ := os.Executable()
 	dir := filepath.Dir(exePath)
+	path := filepath.Join(dir, "config", "mapButtons.json")
 
-	file, err := os.Open(filepath.Join(dir, "config", "mapButtons.json"))
+	file, err := os.Open(path)
 	if err != nil {
-		log.Fatal("Erro ao abrir o arquivo:", err)
+		panic(fmt.Sprintf("Erro ao abrir o arquivo: %v", err))
 	}
 	defer file.Close()
 
 	var buttons []Button
 	if err := json.NewDecoder(file).Decode(&buttons); err != nil {
-		log.Fatal("Erro ao fazer conversão do JSON:", err)
+		panic(fmt.Sprintf("Erro ao fazer conversão do JSON: %v", err))
 	}
 
-	j := &JoystickController{Buttons: buttons}
-	j.initSDL()
+	var joystick JoystickController
 
-	return j
+	joystick = JoystickController{Buttons: buttons, Executor: input.DefaultExecutor}
+
+	joystick.initSDL()
+
+	fmt.Println("Controle conectado!")
+	return &joystick
 }
 
 func (j JoystickController) initSDL() {
 
 	if err := sdl.Init(sdl.INIT_GAMECONTROLLER); err != nil {
-		log.Fatalf("Erro ao inicializar SDL: %v", err)
+		panic(fmt.Sprintf("Erro ao inicializar SDL: %v", err))
 	}
 
 	for sdl.NumJoysticks() < 1 {
@@ -50,8 +61,6 @@ func (j JoystickController) initSDL() {
 
 	controller := sdl.GameControllerOpen(0)
 	if controller == nil {
-		log.Fatal("Não foi possível ler os comandos do controle")
+		panic(fmt.Sprintf("Não foi possível ler os comandos do controle"))
 	}
-
-	fmt.Println("Controle conectado!")
 }

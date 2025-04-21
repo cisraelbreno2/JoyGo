@@ -1,33 +1,30 @@
 package joystick
 
-import "github.com/go-vgo/robotgo"
-
 func (j JoystickController) ExecAction(value uint8, pressed bool) {
-	j.ToggleTranslate(value, pressed)
 
 	for _, button := range j.Buttons {
 		if button.Value == value {
 			if button.MouseFunction {
-				mouseAction(pressed, button.KeyDown, button.KeyUp)
+				j.mouseAction(pressed, button.KeyDown, button.KeyUp)
 			} else {
-				keyboardAction(pressed, button.KeyDown, button.KeyUp)
+				j.keyboardAction(pressed, button.KeyDown, button.KeyUp)
 			}
 		}
 	}
 }
 
-func mouseAction(pressed bool, keyDown, keyUp string) {
+func (j JoystickController) mouseAction(pressed bool, keyDown, keyUp string) {
 	if pressed {
-		robotgo.Click(keyDown)
+		j.Executor.Click(keyDown)
 	} else {
-		robotgo.Click(keyUp)
+		j.Executor.Click(keyUp)
 	}
 }
 
-func keyboardAction(pressed bool, keyDown, keyUp string) {
+func (j JoystickController) keyboardAction(pressed bool, keyDown, keyUp string) {
 	if pressed {
-		robotgo.KeyDown(keyDown)
+		j.Executor.KeyDown(keyDown)
 	} else {
-		robotgo.KeyUp(keyUp)
+		j.Executor.KeyUp(keyUp)
 	}
 }

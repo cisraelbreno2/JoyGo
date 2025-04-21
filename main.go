@@ -11,6 +11,6 @@ func main() {
 
 	for {
 		joystick.HandleConnect(controller)
-		joystick.HandleDisconnect(controller)
+		joystick.HandleDisconnect()
 	}
 }

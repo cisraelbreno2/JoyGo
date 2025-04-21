@@ -6,11 +6,10 @@ import (
 )
 
 var (
-	TranslateEnable = true
-	buttonRPress    = false
-	buttonBackPress = false
-
-	buttonCommand = map[string]uint8{
+	interpretationEnable = true
+	buttonRPress         = false
+	buttonBackPress      = false
+	buttonCommand        = map[string]uint8{
 		"R":    8,
 		"BACK": 4,
 	}
@@ -20,14 +19,17 @@ func HandleConnect(controller *JoystickController) {
 	var axisLeftX, axisLeftY, axisRightX, axisRightY int16
 
 	fmt.Println("Controle habilitado")
-	for TranslateEnable {
+
+	for interpretationEnable {
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
 			switch e := event.(type) {
 			case *sdl.ControllerButtonEvent:
 				switch e.State {
 				case sdl.PRESSED:
+					disableOrEnableInterpreter(e.Button, true)
 					controller.ExecAction(e.Button, true)
 				case sdl.RELEASED:
+					disableOrEnableInterpreter(e.Button, false)
 					controller.ExecAction(e.Button, false)
 				}
 			case *sdl.ControllerAxisEvent:
@@ -43,32 +45,30 @@ func HandleConnect(controller *JoystickController) {
 				}
 			}
 		}
-		controller.MouseScroller(axisRightX, axisRightY)
-		controller.MouseMovement(int(axisLeftX), int(axisLeftY))
+		controller.Executor.Scroll(axisRightX, axisRightY)
+		controller.Executor.MoveMouseAnalog(axisLeftX, axisLeftY)
 	}
 }
 
-func HandleDisconnect(controller *JoystickController) {
+func HandleDisconnect() {
 	fmt.Println("Controle desabilitado")
 
-	for !TranslateEnable {
+	for !interpretationEnable {
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
 			switch e := event.(type) {
 			case *sdl.ControllerButtonEvent:
 				switch e.State {
 				case sdl.PRESSED:
-					controller.ToggleTranslate(e.Button, true)
-				case sdl.RELEASED:
-					controller.ToggleTranslate(e.Button, false)
+					disableOrEnableInterpreter(e.Button, true)
 				}
 			}
 		}
 	}
 }
 
-func (j JoystickController) ToggleTranslate(value uint8, pressed bool) {
+func disableOrEnableInterpreter(value uint8, pressed bool) {
 	if buttonBackPress && buttonRPress && !pressed {
-		TranslateEnable = !TranslateEnable
+		interpretationEnable = !interpretationEnable
 	}
 
 	if value == buttonCommand["BACK"] {
