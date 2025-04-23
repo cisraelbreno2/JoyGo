@@ -9,8 +9,6 @@ func main() {
 	controller := joystick.NewJoystickController()
 	defer sdl.Quit()
 
-	for {
-		joystick.HandleConnect(controller)
-		joystick.HandleDisconnect()
-	}
+	joystick.HandleConnect(controller)
+
 }
